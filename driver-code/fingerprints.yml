@@ -1,10 +1,10 @@
 zwaveManufacturer:
-  - id: "Leviton ZRCS4-MRZ"
-    deviceLabel: Leviton 4 Button Switch
+  - id: "Leviton VRCS2-MRZ"
+    deviceLabel: Leviton 2 Button Switch
     manufacturerId: 0x001D
-    productType: 0x0802
+    productType: 0x1000
     productId: 0x0261
-    deviceProfileName: Leviton-zrcs4-pr
+    deviceProfileName: Leviton-vrcs2
 zwaveGeneric:
   - id: "Leviton ZRCS4-M0Z"
     deviceLabel: Leviton 4 Button Switch
@@ -14,4 +14,4 @@ zwaveGeneric:
     commandClasses:
       supported:
         - 0x2D
-    deviceProfileName: Leviton-zrcs4-pr
+    deviceProfileName: Leviton-zrcs2
