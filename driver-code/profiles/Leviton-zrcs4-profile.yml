@@ -1,11 +1,9 @@
-name: "Leviton-zrcs4-pr"
+name: "Leviton-vrcs2-mrz"
 components:
-  - id: main
+  - id: switch1
     label: "Switch 1"
     capabilities:
     - id: switch
-      version: 1
-    - id: switchLevel
       version: 1
     - id: refresh
       version: 1
@@ -16,52 +14,11 @@ components:
     capabilities:
     - id: switch
       version: 1
-    - id: switchLevel
-      version: 1
     - id: refresh
       version: 1
     categories:
     - name: Switch
-  - id: switch3
-    label: "Switch 3"
-    capabilities:
-    - id: switch
-      version: 1
-    - id: switchLevel
-      version: 1
-    - id: refresh
-      version: 1
-    categories:
-      - name: Switch
-  - id: switch4
-    label: "Switch 4"
-    capabilities:
-    - id: switch
-      version: 1
-    - id: switchLevel
-      version: 1
-    - id: refresh
-      version: 1
-    categories:
-      - name: Switch
 metadata:
   deviceType: Switch
   ocfDeviceType: x.com.st.Switch
   deviceTypeId: Switch
-preferences:
-  - name: "sync"
-    title: "Synchronize switches"
-    description: "Synchronize VRCS4 switches"
-    required: true
-    preferenceType: boolean
-    definition:
-      default: false
-  - name: "dimming"
-    title: "Dimming Duration (Seconds)"
-    description: "Dimming time from full to 0%"
-    required: false
-    preferenceType: integer
-    definition:
-      minimum: 1
-      maximum: 30
-      default: 10
