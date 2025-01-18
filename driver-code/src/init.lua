@@ -50,7 +50,7 @@ local ManufacturerSpecific = (require "st.zwave.CommandClass.ManufacturerSpecifi
 local Version = (require "st.zwave.CommandClass.Version")({ version = 2})
 local zw = require "st.zwave"
 
-local switchNames = {"switch1", "switch2"}
+local switchNames = {"main", "switch2"}
 
 
 local ZWAVE_LEVITON_VRCS2_FINGERPRINTS = {
