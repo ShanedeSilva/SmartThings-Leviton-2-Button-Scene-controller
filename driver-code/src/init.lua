@@ -173,16 +173,7 @@ end
 
 -- Z-WAVE Commands handled
 -- 1) Scene Activation: Button was pressed to turn on/off
--- 2) Multi-level start: Dimming button was pressed.  Change switchLevel (up or down) at dimming interval
--- 3) Multi-level stop: Dimming button was released.  Stop dimming loop
 
--- ZWAVE COMMAND: Scene Activation
--- button (switch) was pressed 
--- Normalize to button 1-4, translate scenes 5-8 to button 1-4
--- If LED is off, then you get scenes 1-4
--- If LED is on, then you get scenes 5-8
--- don't care as we use the SmartThings state and toggle it if a button is pressed
--- Updating the bitmap will sync LED and SmartThings state to keep them in sync
 
 local function scene_activation_handler(self, device, cmd)
   log.trace("------ Received Scene_Activation")
