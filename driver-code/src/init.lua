@@ -34,8 +34,6 @@ local ZwaveDriver = require "st.zwave.driver"
 local utils = require "st.utils"
 local defaults = require "st.zwave.defaults"
 local log = require "log"
-
---- handle functions to throttle commands to controller (one per second)
 local throttle_send = require "throttle_send"
 
 --- @type st.zwave.CommandClass
