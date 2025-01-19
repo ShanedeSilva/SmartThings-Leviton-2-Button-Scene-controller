@@ -183,7 +183,7 @@ local function scene_activation_handler(self, device, cmd)
     -- Update history to new setting
     device:set_field("lastScene", button)
     device:set_field("lastTime", os.time())
-    local switchState = device:get_latest_state (switchNames[button], "main", "switch2")
+    local switchState = device:get_latest_state (switchNames[button], "switch", "switch")
     -- toggle the switch
     local action = ((switchState == "on") and capabilities.switch.switch.off) or capabilities.switch.switch.on
     -- apply the new state to all devices
