@@ -27,7 +27,7 @@ The VRCS2 is an older device and discontinued by Leviton.
 
 ## To install
 
-* Use the channel link (https://callaway.smartthings.com/channels/1a8f2b01-6fe5-4957-9601-9fa0267c6d8b) to enroll install the driver on your hub.
+* Use the channel link (https://bestow-regional.api.smartthings.com/invite/eGM6bLzx6mMA) to enroll install the driver on your hub.
 * Use the SmartThings app to exclude your device (there is currently no way to switch from a Groovy DTH to an Edge driver except by deleting and then adding the device).
 * Use Add device → Scan nearby in the SmartThings app to include your device. Your device should pick up this driver if the fingerprint matches.
 
