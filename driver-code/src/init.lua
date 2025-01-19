@@ -54,7 +54,7 @@ local switchNames = {"main", "switch2"}
 
 
 local ZWAVE_LEVITON_VRCS2_FINGERPRINTS = {
-  {mfr = 0x001D, prod = 0x1302, model = 0x0243} -- Leviton VRCS2-MRZ
+  {mfr = 0x001D, prod = 0x1102, model = 0x0243} -- Leviton VRCS2-MRZ
 }
 
 local function can_handle_LEVITON_VRCS2_MRZ(opts, driver, device, ...)
