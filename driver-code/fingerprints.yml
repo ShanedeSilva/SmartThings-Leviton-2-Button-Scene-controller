@@ -2,6 +2,6 @@ zwaveManufacturer:
   - id: "Leviton VRCS2-MRZ"
     deviceLabel: Leviton 2 Button Switch
     manufacturerId: 0x001D
-    productType: 0x1302
+    productType: 0x1102
     productId: 0x0243
     deviceProfileName: Leviton VRCS2
