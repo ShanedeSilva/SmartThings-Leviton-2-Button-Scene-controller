@@ -54,11 +54,11 @@ local switchNames = {"main", "switch2"}
 
 
 local ZWAVE_LEVITON_VRCS2_FINGERPRINTS = {
-  {mfr = 0x001D, prod = 0x1302, model = 0x0243} -- Leviton VRCS2
+  {mfr = 0x001D, prod = 0x1302, model = 0x0243} -- Leviton VRCS2-MRZ
 }
 
-local function can_handle_LEVITON_VRCS2(opts, driver, device, ...)
-  for _, fingerprint in ipairs(ZWAVE_LEVITON_VRCS2_FINGERPRINTS) do
+local function can_handle_LEVITON_VRCS2-MRZ(opts, driver, device, ...)
+  for _, fingerprint in ipairs(ZWAVE_LEVITON_VRCS2-MRZ_FINGERPRINTS) do
    if device:id_match(fingerprint.mfr, fingerprint.prod, fingerprint.model) then
       return true
       end
@@ -364,7 +364,7 @@ local driver_template = {
     infoChanged = device_info_changed
 
   },
-  can_handle = can_handle_LEVITON_VRCS2,
+  can_handle = can_handle_LEVITON_VRCS2-MRZ,
 
 }
 
