@@ -54,7 +54,7 @@ local switchNames = {"main", "switch2"}
 
 
 local ZWAVE_LEVITON_VRCS2_FINGERPRINTS = {
-  {mfr = 0x001D, prod = 0x1000, model = 0x0261} -- Leviton VRCS2
+  {mfr = 0x001D, prod = 0x1302, model = 0x0243} -- Leviton VRCS2
 }
 
 local function can_handle_LEVITON_VRCS2(opts, driver, device, ...)
@@ -107,7 +107,7 @@ end
 
 local function update_LEDs (driver, device) 
   local bitmap = 0
-  for i = 4,1,-1 do
+  for i = 2,1,-1 do
     bitmap = bitmap << 1
     local state = device:get_latest_state (switchNames[i], "main", "switch2")
     bitmap = (state == "off") and bitmap or (bitmap | 1)
@@ -169,27 +169,26 @@ local function scene_controller_handler(self, device, cmd)
 end
 
 
--- Z-WAVE Commands handled
+- Z-WAVE Commands handled
 -- 1) Scene Activation: Button was pressed to turn on/off
-
 
 local function scene_activation_handler(self, device, cmd)
   log.trace("------ Received Scene_Activation")
   local devices = build_device_list (self, device, true)
   local button = cmd.args.scene_id
-  button = (button > 4) and (button - 4) or button
--- Allow for debounce, may get multiple messages for same press
--- Ignore if same scene within 2 seconds
+  button = (button > 2) and (button - 2) or button
+  -- Allow for debounce, may get multiple messages for same press
+  -- Ignore if same scene within 2 seconds
   if ((button == device:get_field("lastScene")) and (os.difftime(os.time(), device:get_field("lastTime"))<2)) then
     log.trace("Repeated press, no action taken")
   else
-  -- Update history to new setting
+    -- Update history to new setting
     device:set_field("lastScene", button)
     device:set_field("lastTime", os.time())
     local switchState = device:get_latest_state (switchNames[button], "main", "switch2")
--- toggle the switch
+    -- toggle the switch
     local action = ((switchState == "on") and capabilities.switch.switch.off) or capabilities.switch.switch.on
--- apply the new state to all devices
+    -- apply the new state to all devices
     for index = 1,#devices do
       devices[index]:emit_component_event(device.profile.components[switchNames[button]], action())
     end
