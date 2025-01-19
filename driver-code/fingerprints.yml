@@ -14,4 +14,4 @@ zwaveGeneric:
     commandClasses:
       supported:
         - 0x2D
-    deviceProfileName: Leviton-zrcs2
+    deviceProfileName: Leviton-vrcs2
