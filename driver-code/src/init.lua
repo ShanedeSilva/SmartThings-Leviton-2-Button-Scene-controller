@@ -216,9 +216,13 @@ local function capability_handle_on(driver, device, command)
         duration = 0
       }))
     end
+    device:send(SwitchBinary:Set({
+      target_value = SwitchBinary.value.ON_ENABLE,
+      duration = 0
+    }))
     update_LEDs (driver, device)
   else
-    log.trace ("Switch was already on.  Command skipped.")
+    log.trace ("Switch was already on. Command skipped.")
   end
 end
 
@@ -236,9 +240,13 @@ local function capability_handle_off(driver, device, command)
         duration = 0
       }))
     end
+    device:send(SwitchBinary:Set({
+      target_value = SwitchBinary.value.OFF_DISABLE,
+      duration = 0
+    }))
     update_LEDs (driver, device)
   else
-    log.trace ("Switch was already off.  Command skipped.")
+    log.trace ("Switch was already off. Command skipped.")
   end
 end
 
