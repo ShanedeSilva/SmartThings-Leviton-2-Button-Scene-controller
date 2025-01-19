@@ -44,7 +44,7 @@ local Association = (require "st.zwave.CommandClass.Association") ({version = 2}
 local SceneControllerConf= (require "st.zwave.CommandClass.SceneControllerConf")({ version = 1})
 local SceneActuatorConf= (require "st.zwave.CommandClass.SceneActuatorConf")({ version = 1})
 local SceneActivation= (require "st.zwave.CommandClass.SceneActivation")({ version = 1})
-local Configuraiton = (require "st.zwave.CommandClass.Configuration") ({version = 1})
+local Configuration = (require "st.zwave.CommandClass.Configuration") ({version = 1})
 local ManufacturerProprietary = (require "st.zwave.CommandClass.ManufacturerProprietary")({ version = 1})
 local ManufacturerSpecific = (require "st.zwave.CommandClass.ManufacturerSpecific")({ version = 1})
 local Version = (require "st.zwave.CommandClass.Version")({ version = 2})
@@ -52,18 +52,17 @@ local zw = require "st.zwave"
 
 local switchNames = {"main", "switch2"}
 
-
 local ZWAVE_LEVITON_VRCS2_FINGERPRINTS = {
   {mfr = 0x001D, prod = 0x1102, model = 0x0243} -- Leviton VRCS2-MRZ
 }
 
 local function can_handle_LEVITON_VRCS2_MRZ(opts, driver, device, ...)
   for _, fingerprint in ipairs(ZWAVE_LEVITON_VRCS2_FINGERPRINTS) do
-   if device:id_match(fingerprint.mfr, fingerprint.prod, fingerprint.model) then
+    if device:id_match(fingerprint.mfr, fingerprint.prod, fingerprint.model) then
       return true
-      end
     end
- return false
+  end
+  return false
 end
 
 -- helper functions 
@@ -81,12 +80,12 @@ local function build_device_list (driver, device, includeDevice)
   if (includeDevice) then deviceList = {device} end
   if (not device.preferences.sync) then
     return deviceList 
-    end
+  end
   local devices = driver:get_devices()
   for index = 1,#devices do
     if (devices[index].preferences.sync) and (devices[index] ~= device) then
       table.insert (deviceList, devices[index])
-      end
+    end
   end
   return deviceList
 end
@@ -132,17 +131,17 @@ local function basic_report_handler(self, device, cmd)
 end
 
 local function switch_binary_report_handler(self, device, cmd)
-  log.debug("------ Unexpected received switch report handler")
+  local switchState = cmd.args.value == SwitchBinary.value.ON_ENABLE and "on" or "off"
+  device:emit_component_event(device.profile.components[switchNames[cmd.src_channel + 1]], capabilities.switch.switch[switchState]())
 end
 
 local function association_report_handler(self, device, cmd)
   log.debug("------ Unexpected received association report")
-  end
+end
 
 local function association_groupings_report_handler(self, device, cmd)
   log.debug("------Unexpected received association groupings report")
-  end
-
+end
 
 local function scene_actuator_conf_get_handler(self, device, cmd)
   log.debug("------ Unexpected received Scene_Actuator_Conf_Get")
@@ -168,8 +167,7 @@ local function scene_controller_handler(self, device, cmd)
   log.debug("------ Unexpected Controller Configuration Report")
 end
 
-
-- Z-WAVE Commands handled
+-- Z-WAVE Commands handled
 -- 1) Scene Activation: Button was pressed to turn on/off
 
 local function scene_activation_handler(self, device, cmd)
@@ -196,8 +194,6 @@ local function scene_activation_handler(self, device, cmd)
   end
 end
 
-
-
 -- UI or APP Commands
 -- ON: Set switch state to ON
 -- OFF: Set switch state to OFF
@@ -215,11 +211,15 @@ local function capability_handle_on(driver, device, command)
     local devices = build_device_list (driver, device, true)
     for index = 1,#devices do
       devices[index]:emit_component_event(device.profile.components[command.component], capabilities.switch.switch.on())
-      end
+      devices[index]:send(SwitchBinary:Set({
+        target_value = SwitchBinary.value.ON_ENABLE,
+        duration = 0
+      }))
+    end
     update_LEDs (driver, device)
   else
     log.trace ("Switch was already on.  Command skipped.")
-    end
+  end
 end
 
 local function capability_handle_off(driver, device, command)
@@ -231,11 +231,15 @@ local function capability_handle_off(driver, device, command)
     local devices = build_device_list (driver, device, true)
     for index = 1,#devices do
       devices[index]:emit_component_event(device.profile.components[command.component], capabilities.switch.switch.off())
-      end
+      devices[index]:send(SwitchBinary:Set({
+        target_value = SwitchBinary.value.OFF_DISABLE,
+        duration = 0
+      }))
+    end
     update_LEDs (driver, device)
   else
     log.trace ("Switch was already off.  Command skipped.")
-    end
+  end
 end
 
 local function version_handler (driver, device, cmd)
@@ -293,7 +297,7 @@ local function device_info_changed (driver, device, event, args)
       sync_switches (driver, device)
     end
   end
-  end
+end
 
 local init_driver_handler = function(self, device)
   log.trace ("Driver was init'd for device:", device.id)
@@ -338,11 +342,11 @@ local driver_template = {
   [cc.MANUFACTURER_PROPRIETARY] = {
     [0x00] = proprietary_handler
     },
- [cc.MANUFACTURER_SPECIFIC] = {
- --     -- GET
-      [0x04] = proprietary_handler,
- --     -- REPORT
-      [0x05] = proprietary_handler
+  [cc.MANUFACTURER_SPECIFIC] = {
+  --     -- GET
+    [0x04] = proprietary_handler,
+  --     -- REPORT
+    [0x05] = proprietary_handler
     },
   [cc.VERSION] = {
     [Version.REPORT] = version_handler
