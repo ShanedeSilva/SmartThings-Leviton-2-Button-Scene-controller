@@ -108,7 +108,7 @@ local function update_LEDs (driver, device)
   local bitmap = 0
   for i = 2,1,-1 do
     bitmap = bitmap << 1
-    local state = device:get_latest_state (switchNames[i], "main", "switch2")
+    local state = device:get_latest_state (switchNames[i], "switch", "switch")
     bitmap = (state == "off") and bitmap or (bitmap | 1)
   end
 -- LEDs get set, but get an unsupported command response from device
@@ -204,7 +204,7 @@ end
 
 local function capability_handle_on(driver, device, command)
   log.trace ("UI/APP sent an on command for switch ", device.label, command.component)
-  local oldState = device:get_latest_state (command.component, "main", "switch2")
+  local oldState = device:get_latest_state (command.component, "switch", "switch")
   -- ignore if state is already on
   if (oldState ~= "on") then
     log.trace ("Turning switch on")
