@@ -109,7 +109,7 @@ local function update_LEDs (driver, device)
   local bitmap = 0
   for i = 4,1,-1 do
     bitmap = bitmap << 1
-    local state = device:get_latest_state (switchNames[i], "switch", "switch")
+    local state = device:get_latest_state (switchNames[i], "main", "switch2")
     bitmap = (state == "off") and bitmap or (bitmap | 1)
   end
 -- LEDs get set, but get an unsupported command response from device
@@ -186,7 +186,7 @@ local function scene_activation_handler(self, device, cmd)
   -- Update history to new setting
     device:set_field("lastScene", button)
     device:set_field("lastTime", os.time())
-    local switchState = device:get_latest_state (switchNames[button], "switch", "switch")
+    local switchState = device:get_latest_state (switchNames[button], "main", "switch2")
 -- toggle the switch
     local action = ((switchState == "on") and capabilities.switch.switch.off) or capabilities.switch.switch.on
 -- apply the new state to all devices
@@ -209,7 +209,7 @@ end
 
 local function capability_handle_on(driver, device, command)
   log.trace ("UI/APP sent an on command for switch ", device.label, command.component)
-  local oldState = device:get_latest_state (command.component, "switch", "switch")
+  local oldState = device:get_latest_state (command.component, "main", "switch2")
   -- ignore if state is already on
   if (oldState ~= "on") then
     log.trace ("Turning switch on")
