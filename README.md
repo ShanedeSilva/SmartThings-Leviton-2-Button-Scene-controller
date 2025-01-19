@@ -10,7 +10,7 @@ The VRCS2 is an older device and discontinued by Leviton.
   - id: "Leviton ZRCS2"
     deviceLabel: Leviton 2 Button Switch
     manufacturerId: 0x001D
-    productType: 0x1000
+    productType: 0x1102
     productId: 0x0261
 
 
