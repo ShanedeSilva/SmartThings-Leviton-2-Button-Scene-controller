@@ -39,15 +39,15 @@ local throttle_send = require "throttle_send"
 --- @type st.zwave.CommandClass
 local cc = require "st.zwave.CommandClass"
 local Basic = (require "st.zwave.CommandClass.Basic")({ version = 1})
-local SwitchBinary = (require "st.zwave.CommandClass.SwitchBinary")({ version = 2})
-local Association = (require "st.zwave.CommandClass.Association") ({version = 2})
+local SwitchBinary = (require "st.zwave.CommandClass.SwitchBinary")({ version = 1})
+local Association = (require "st.zwave.CommandClass.Association") ({version = 1})
 local SceneControllerConf= (require "st.zwave.CommandClass.SceneControllerConf")({ version = 1})
 local SceneActuatorConf= (require "st.zwave.CommandClass.SceneActuatorConf")({ version = 1})
 local SceneActivation= (require "st.zwave.CommandClass.SceneActivation")({ version = 1})
 local Configuration = (require "st.zwave.CommandClass.Configuration") ({version = 1})
 local ManufacturerProprietary = (require "st.zwave.CommandClass.ManufacturerProprietary")({ version = 1})
 local ManufacturerSpecific = (require "st.zwave.CommandClass.ManufacturerSpecific")({ version = 1})
-local Version = (require "st.zwave.CommandClass.Version")({ version = 2})
+local Version = (require "st.zwave.CommandClass.Version")({ version = 1})
 local zw = require "st.zwave"
 
 local switchNames = {"main", "switch2"}
