@@ -8,9 +8,9 @@
                    "left":{
                       "device":{
                          "devices":[
-                            "<VRCS4 Switch>"
+                            "<VRCS2 Switch>"
                          ],
-                         "component":"<main, switch2, switch3, or switch4>",
+                         "component":"<main, switch2>",
                          "capability":"switch",
                          "attribute":"switch"
                       }
@@ -44,9 +44,9 @@
                             "left":{
                                "device":{
                                   "devices":[
-                                     "<VRCS4 Switch>"
+                                     "<VRCS2 Switch>"
                                   ],
-                                  "component":"<main, switch2, switch3, or switch4>",
+                                  "component":"<main, switch2>",
                                   "capability":"switch",
                                   "attribute":"switch"
                                }
@@ -83,9 +83,9 @@
                     "operand": {
                         "device": {
                             "devices": [
-                                "<VRCS4 Switch>"
+                                "<VRCS2 Switch>"
                             ],
-                            "component": "<main, switch2, switch3, or switch4>",
+                            "component": "<main, switch2>",
                             "capability": "switchLevel",
                             "attribute": "level"
                         }
@@ -106,9 +106,9 @@
                                         {
                                             "device": {
                                                 "devices": [
-                                                    "<VRCS4 Switch>"
+                                                    "<VRCS2 Switch>"
                                                 ],
-                                                "component": "<main, switch2, switch3, or switch4>",
+                                                "component": "<main, switch2>",
                                                 "capability": "switchLevel",
                                                 "attribute": "level"
                                             }
@@ -144,11 +144,11 @@
                 {
                    "command":{
                       "devices":[
-                         "<VRCS4 Switch>"
+                         "<VRCS2 Switch>"
                       ],
                       "commands":[
                          {
-                            "component":"<main, switch2, switch3, or switch4>",
+                            "component":"<main, switch2>",
                             "capability":"switch",
                             "command":"on"
                          }
@@ -180,11 +180,11 @@
                          {
                             "command":{
                                "devices":[
-                                  "<VRCS4 Switch>"
+                                  "<VRCS2 Switch>"
                                ],
                                "commands":[
                                   {
-                                     "component":"<main, switch2, switch3, or switch4>",
+                                     "component":"<main, switch2>",
                                      "capability":"switch",
                                      "command":"off"
                                   }
@@ -215,11 +215,11 @@
                     {
                         "command": {
                             "devices": [
-                                "<VRCS4 Switch>"
+                                "<VRCS2 Switch>"
                             ],
                             "commands": [
                                 {
-                                    "component": "<main, switch2, switch3, or switch4>",
+                                    "component": "<main, switch2>",
                                     "capability": "switchLevel",
                                     "command": "setLevel",
                                     "arguments": [
