@@ -1,6 +1,6 @@
 name: "Leviton-vrcs2-mrz"
 components:
-  - id: switch1
+  - id: main
     label: "Switch 1"
     capabilities:
     - id: switch
