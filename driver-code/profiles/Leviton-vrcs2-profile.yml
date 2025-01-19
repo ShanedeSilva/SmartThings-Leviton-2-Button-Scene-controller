@@ -1,4 +1,4 @@
-name: "Leviton-vrcs2-mrz"
+name: "Leviton VRCS2-MRZ"
 components:
   - id: main
     label: "Switch 1"
